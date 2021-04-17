@@ -20,7 +20,7 @@ class ClientTest {
 
 
     @Test
-    void uploadFile() throws IOException {
+    void uploadFile() throws Exception {
         System.out.println(client.uploadFile(new File("C:\\Users\\31261\\Desktop\\小程序测试.mp4")));
     }
 
