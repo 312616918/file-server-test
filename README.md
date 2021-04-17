@@ -2,9 +2,9 @@
 一个简易文件服务器，包括服务端和其客户端sdk
 
 # 项目技术以及主要依赖
-- 通过maven构建
-- 后端使用SpringBoot+mybatis，数据库为MySQL 8.0.19
-- 客户端通过HttpURLConnection实现网络传输，仅以来fastjson解析json数据
+- 通过 maven 构建
+- 后端使用 SpringBoot+mybatis，数据库为MySQL 8.0.19
+- 客户端通过 HttpURLConnection 实现网络传输，仅依赖 fastjson 解析 json 数据
 
 # 服务器配置
 数据文件夹、数据源、日志路径、上传大小限制（默认10GB）均在application.properties中
@@ -161,5 +161,21 @@ public FileInfo getFileInfo(String name) throws Exception ;
 * @throws IOException
 */
 public void downloadFile(String name,File targetFile) throws IOException;
+```
+
+其中，构造函数需要服务器url进行初始化，支持使用代理。
+
+url为【服务器部署路径】+ file
+
+例如：
+
+```java
+//无代理
+Client client=new Client("http://localhost:8080/file");
+
+//代理
+InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", 8888);
+Proxy proxy = new Proxy(Proxy.Type.HTTP, inetSocketAddress);
+Client client=new Client("http://localhost:8080/file",proxy);
 ```
 
